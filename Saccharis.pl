@@ -256,7 +256,10 @@ foreach my $i (@group) {
   # Set NumberSeq count to pruned sequences
   $NumberSeqs = `grep -c ^\\> $dbcan_file`;
   print "Pruned Sequence Count --> \t$NumberSeqs\n\n";
-
+  if ($NumberSeqs == 0) {
+     print "Script will now terminate because there is nothing to do.\n";
+     exit;
+  }  
   # Run Third Benchmark
   my $t_dbcan = Benchmark->new;
   $td = timediff($t_dbcan, $t_merge);
